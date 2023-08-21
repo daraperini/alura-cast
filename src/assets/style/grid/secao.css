@@ -1,0 +1,62 @@
+.secao {
+  display: grid;
+  align-items: center;
+}
+
+.secao-horizontal {
+  grid-template-rows: 120px auto;
+}
+
+.secao-vertical {
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr 2fr;
+}
+
+.secao__cartoes {
+  display: grid;
+  row-gap: 1rem;
+
+  --gap-coluna: 1.25rem;
+  column-gap: var(--gap-coluna);
+
+  --gap-proporcional: var(--gap-coluna) *
+    (var(--quantidade-maxima-de-colunas) - 1) /
+    var(--quantidade-maxima-de-colunas);
+  /* 2 colunas = aplica 1 gap entre elas (gaps = colunas -1 SEMPRE). gapcoluna *quantidademáximadecolunas dá o valor em PX do gap que está sendo aplicado, /quantidademaximadecolunas aplicamos de forma proporcional esse valor em pixel por cada coluna*/
+    /* depois descontamos da largura mínima e da máxima a quantidade de gap, como se fosse um "box-sizing border box" descontando o valor do gap */
+
+  /* Largura mínima da coluna */
+  --largura-minima-da-coluna: 100%/2 - var(--gap-proporcional);
+
+  /* Largura máxima da coluna */
+  --max-largura-maxima-da-coluna: 100% / var(--quantidade-maxima-de-colunas);
+  --largura-maxima-da-coluna: max(
+    var(--min-largura-maxima-da-coluna),
+    var(--max-largura-maxima-da-coluna) - var(--gap-proporcional)
+  );
+
+  --minimo: min(
+    var(--largura-minima-da-coluna),
+    var(--largura-maxima-da-coluna)
+  );
+
+  grid-template-columns: repeat(auto-fit, minmax(var(--minimo), 1fr));
+}
+
+.secao-horizontal .secao__cartoes {
+  --quantidade-maxima-de-colunas: 3;
+  --min-largura-maxima-da-coluna: 348px;
+
+  /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100% / 2, max(348px, 100% / 3)), 1fr));
+                                auto-fit expande o conteúdo para ocupar todo o espaço disponível, valor mínimo do template tem valor mínimo de 50% e valor máximo de 33% que só se aplica quando o template tem tamanho de 348px ou mais, valor máximo do template é 1fr (deixando todos do mesmo tamanho e ocupando todo o espaço disponível) */
+}
+
+.secao-vertical .secao__cartoes {
+  grid-column: 1 / 3;
+  --quantidade-maxima-de-colunas: 6;
+  --min-largura-maxima-da-coluna: 165px;
+
+  /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100% /2, max(165px, 100% /6)), 1fr)); */
+}
