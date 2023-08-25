@@ -1,7 +1,3 @@
-# alura-cast
-
-
-
 # Alura Cast
 
 Esse projeto foi desenvolvido a partir do curso de CSS: construindo layouts com Grid, da Alura. Com o layout base já pronto, utilizei grid para posicionar os elementos em tela
