@@ -1,4 +1,4 @@
-# Portfolio - Alura
+# Alura Cast
 
 Hello! This music streaming project was developed during Alura's class *CSS: building Grid Layouts*. I received the base CSS's code and a Figma's layout at the beginning of the class and positioned the elements in the screen using CSS Grid as I practiced the use of this popular tool.
 
